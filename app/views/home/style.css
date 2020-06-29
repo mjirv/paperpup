@@ -2,13 +2,22 @@ body {
   font-family: sans-serif;
   background-color: #eeeeee;
   color: #222222;
+  margin: 0;
 }
 
 #content {
-  max-width: 800px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
+  padding: 0 2% 0 2%;
+}
+
+.header {
+  background-color: #a418d0;
+  display: block;
+  padding: 2%;
+  color: #eeeeee;
 }
 
 .title {
@@ -18,7 +27,7 @@ body {
 
 .title a {
   text-decoration: none;
-  color: #222222;
+  color: #eeeeee;
 }
 
 .title a:hover {
@@ -27,6 +36,29 @@ body {
 
 .title-description {
   text-align: center;
+}
+
+.menu {
+  display: block;
+  background-color: lightgrey;
+  padding: 0.1%;
+  text-align: center;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  display: inline;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.menu a {
+  font-size: 2em;
+  text-decoration: none;
 }
 
 #loading {
