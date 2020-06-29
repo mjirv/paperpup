@@ -8,6 +8,14 @@
       $("#content").empty();
     };
 
+    function beginLoading() {
+      $("#loading").show();
+    }
+
+    function endLoading() {
+      $("#loading").hide();
+    }
+
     function openExternal(url) {
       window.open(url, '_blank');
     }
@@ -23,10 +31,12 @@
     }
 
     function getPostsForCollection(collectionId) {
+      beginLoading();
       $.ajax({
           url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
           context: document.body
         }).done(function(res) {
+          endLoading();
           showPosts(res);
         });
     }
@@ -49,21 +59,25 @@
 
     function getCollection(collectionId) {
       emptyContent();
+      beginLoading();
       $.ajax({
         url: `http://localhost:3000/collections/${collectionId}`,
         context: document.body
       }).done(function(res) {
+        endLoading();
         showCollection(res);
         getPostsForCollection(collectionId);
       });
     }
 
-    $(document).ready(function(){
-      // jQuery methods go here...
+    function showHome() {
+      beginLoading();
       $.ajax({
         url: "http://localhost:3000/collections",
         context: document.body
       }).done(function(res) {
+        emptyContent();
+        endLoading();
         for (let i in res) {
           item = res[i];
           console.log(item);
@@ -74,13 +88,18 @@
             </div>`);
         }
       });
+    }
+
+    $(document).ready(function(){
+      // jQuery methods go here...
+      showHome();
     });
   </script>
 </head>
 <body>
   <div class="header">
     <div class="title">
-      <a href='index.html'>App Title</a>
+      <a href='#' onclick='showHome()'>App Title</a>
     </div>
     <div class="title-description">
       <i>Read articles from all your favorite writers and blogs in one place</i>
@@ -89,5 +108,8 @@
     </div>
   </div>
   <div id='content'>
+  </div>
+  <div id='loading'>
+    <p>Loading...</p>
   </div>
 </body>
