@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_185524) do
+ActiveRecord::Schema.define(version: 2020_06_29_015456) do
 
   create_table "collection_followers", force: :cascade do |t|
     t.integer "collection_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_185524) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.integer "rss_type"
+    t.string "color"
   end
 
 end

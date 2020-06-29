@@ -8,7 +8,8 @@ class Post < ApplicationRecord
       post_timestamp: self.post_timestamp.to_date,
       author: self.author || '',
       source_title: self.source.title,
-      link: self.link
+      link: self.link,
+      source_color: self.source.color
     }
   end
 end
