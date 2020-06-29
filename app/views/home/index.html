@@ -6,6 +6,11 @@
   <link rel="stylesheet" href="style.css">
   <script>
     // My custom methods
+    function changePage() {
+      emptyContent();
+      hideSearch();
+      beginLoading();
+    }
     function emptyContent() {
       $("#content").empty();
     };
@@ -34,6 +39,7 @@
 
     function getPostsForCollection(collectionId) {
       beginLoading();
+      console.log("called!");
       $.ajax({
           url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
           context: document.body
@@ -60,8 +66,13 @@
     }
 
     function getCollection(collectionId) {
-      emptyContent();
-      beginLoading();
+      changePage();
+      if(collectionId==0) {
+        /* ideally I'd make the search bar placeholder text unclickable, but
+         this prevents it from breaking things for now */
+        showHome();
+        return;
+      };
       $.ajax({
         url: `http://localhost:3000/collections/${collectionId}`,
         context: document.body
@@ -73,7 +84,7 @@
     }
 
     function showHome() {
-      beginLoading();
+      changePage();
       $.ajax({
         url: "http://localhost:3000/collections",
         context: document.body
@@ -95,7 +106,6 @@
             </div>`);
         }
         initializeSearch(res);
-        hideSearch();
       });
     }
 
@@ -114,8 +124,9 @@
       // Read selected option
       $('#searchCollections').on('select2:select', function(e){
         var id = $('#searchCollections').find(':selected').val();
+        console.log("search happened!");
         getCollection(id);
-        toggleSearch();
+        hideSearch();
       });
     }
 
@@ -131,6 +142,7 @@
     function hideSearch() {
       $('#search').hide();
       $('#menu-button-search').css('text-shadow', '0px 0px');
+      $('#searchCollections').val(null).trigger('change');
     }
 
     $(document).ready(function(){
@@ -156,8 +168,8 @@
     </ul>
   </div>
   <div id='search' style='display: none'>
-    <select id='searchCollections' placeholder='Search all collections'>
-      <option id=0>Search all collections</option>
+    <select id='searchCollections'>
+      <option value=0>Search all collections</option>
     </select>
   </div>
   <div id='content'>
