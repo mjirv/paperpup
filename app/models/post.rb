@@ -7,7 +7,8 @@ class Post < ApplicationRecord
       title: self.title,
       post_timestamp: self.post_timestamp.to_date,
       author: self.author || '',
-      source_title: self.source.title
+      source_title: self.source.title,
+      link: self.link
     }
   end
 end

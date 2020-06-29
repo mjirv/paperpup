@@ -8,39 +8,54 @@
       $("#content").empty();
     };
 
+    function openExternal(url) {
+      window.open(url, '_blank');
+    }
+
+    function showCollection(res) {
+      let collection = res['collection'];
+      $("#content").append(`
+        <div class='section-header'>
+          <div class='name'>${collection['name']}</div>
+          <div class='description'>${collection['description']}</div>
+        </div>`
+      );
+    }
+
+    function getPostsForCollection(collectionId) {
+      $.ajax({
+          url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
+          context: document.body
+        }).done(function(res) {
+          showPosts(res);
+        });
+    }
+
+    function showPosts(res) {
+      for (let i in res) {
+        item = res[i];
+        console.log(item);
+        $("#content").append(`
+          <div class='item post' onclick="openExternal('${item['link']}')">
+            <div class='post-name'>${item['title']}</div>
+            <div class='post-author'>${item['author']}</div>
+            <br />
+            <span class='post-source-name' style='background-color: ${item['source_tile_color']}'>${item['source_title']}</span>
+            <span class='post-date'>${item['post_timestamp']}</span>
+          </div>`
+        );
+      }
+    }
+
     function getCollection(collectionId) {
       emptyContent();
       $.ajax({
         url: `http://localhost:3000/collections/${collectionId}`,
         context: document.body
       }).done(function(res) {
-        console.log(res);
-        let collection = res['collection'];
-        $("#content").append(`
-          <div class='section-header'>
-            <div class='name'>${collection['name']}</div>
-            <div class='description'>${collection['description']}</div>
-          </div>
-          `);
-        $.ajax({
-            url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
-            context: document.body
-          }).done(function(res) {
-            for (let i in res) {
-              item = res[i];
-              console.log(item);
-              $("#content").append(`
-                <div class='item post' onclick="openExternal(${item['link']})">
-                  <div class='post-name'>${item['title']}</div>
-                  <div class='post-source-name'>${item['source_title']}</div>
-                  <div class='post-author'>${item['author']}</div>
-                  <div class='post-date'>${item['post_timestamp']}</div>
-                </div>`
-              );
-            }
-          })
-        }
-      )
+        showCollection(res);
+        getPostsForCollection(collectionId);
+      });
     }
 
     $(document).ready(function(){
