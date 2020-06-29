@@ -1,0 +1,78 @@
+<head>
+  <title>Blog Aggregator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    // My custom methods
+    function emptyContent() {
+      $("#content").empty();
+    };
+
+    function getCollection(collectionId) {
+      emptyContent();
+      $.ajax({
+        url: `http://localhost:3000/collections/${collectionId}`,
+        context: document.body
+      }).done(function(res) {
+        console.log(res);
+        let collection = res['collection'];
+        $("#content").append(`
+          <div class='section-header'>
+            <div class='name'>${collection['name']}</div>
+            <div class='description'>${collection['description']}</div>
+          </div>
+          `);
+        $.ajax({
+            url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
+            context: document.body
+          }).done(function(res) {
+            for (let i in res) {
+              item = res[i];
+              console.log(item);
+              $("#content").append(`
+                <div class='item post' onclick="openExternal(${item['link']})">
+                  <div class='post-name'>${item['title']}</div>
+                  <div class='post-source-name'>${item['source_title']}</div>
+                  <div class='post-author'>${item['author']}</div>
+                  <div class='post-date'>${item['post_timestamp']}</div>
+                </div>`
+              );
+            }
+          })
+        }
+      )
+    }
+
+    $(document).ready(function(){
+      // jQuery methods go here...
+      $.ajax({
+        url: "http://localhost:3000/collections",
+        context: document.body
+      }).done(function(res) {
+        for (let i in res) {
+          item = res[i];
+          console.log(item);
+          $("#content").append(`
+            <div class='item collections-item' onclick="getCollection(${item['id']})">
+              <div class='name'>${item['name']}</div>
+              <div class='description'>${item['description']}</div>
+            </div>`);
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="header">
+    <div class="title">
+      <a href='index.html'>App Title</a>
+    </div>
+    <div class="title-description">
+      <i>Read articles from all your favorite writers and blogs in one place</i>
+    </div>
+    <div class="menu">
+    </div>
+  </div>
+  <div id='content'>
+  </div>
+</body>

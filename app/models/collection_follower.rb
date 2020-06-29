@@ -1,0 +1,2 @@
+class CollectionFollower < ApplicationRecord
+end
