@@ -1,7 +1,9 @@
 <head>
   <title>Blog Aggregator</title>
-  <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <link rel="stylesheet" href="style.css">
   <script>
     // My custom methods
     function emptyContent() {
@@ -50,7 +52,7 @@
             <div class='post-name'>${item['title']}</div>
             <div class='post-author'>${item['author']}</div>
             <br />
-            <span class='post-source-name' style='background-color: ${item['source_color']}'>${item['source_title']}</span>
+            <span class='post-source-name' style='color: ${item['source_color']}'>${item['source_title']}</span>
             <span class='post-date'>${item['post_timestamp']}</span>
           </div>`
         );
@@ -86,14 +88,49 @@
           `)
         for (let i in res) {
           item = res[i];
-          console.log(item);
           $("#content").append(`
             <div class='item collections-item' onclick="getCollection(${item['id']})">
               <div class='name'>${item['name']}</div>
               <div class='description'>${item['description']}</div>
             </div>`);
         }
+        initializeSearch(res);
+        hideSearch();
       });
+    }
+
+    function initializeSearch(res) {
+      console.log(res);
+      // Initialize select2
+      $("#searchCollections").select2({
+        placeholder: "Search all collections",
+        data: res.map(item => {
+          return {id: item.id, text: item.name, desc: item.description}
+        }),
+        width: '40%'
+        //minimumResultsForSearch: 10
+      });
+
+      // Read selected option
+      $('#searchCollections').on('select2:select', function(e){
+        var id = $('#searchCollections').find(':selected').val();
+        getCollection(id);
+        toggleSearch();
+      });
+    }
+
+    function toggleSearch() {
+      $('#search').is(":visible") ? hideSearch() : showSearch();
+    }
+
+    function showSearch() {
+      $('#search').show();
+      $('#menu-button-search').css({'text-shadow': '1px 1px #222222'});
+    }
+
+    function hideSearch() {
+      $('#search').hide();
+      $('#menu-button-search').css('text-shadow', '0px 0px');
     }
 
     $(document).ready(function(){
@@ -113,10 +150,15 @@
   </div>
   <div class="menu">
     <ul>
-      <li><a href='#' id='menu-home' onclick='showHome()'>&#127968</a></li>
-      <li><a href='#seach'>&#128269</a></li>
-      <li><a href='#add'>&#10133</a></li>
+      <li><a href='#' id='menu-home' onclick='showHome()'>&#127968 Home</a></li>
+      <li><a href='#add'>&#10133 New Collection</a></li>
+      <li><a href='#search' onclick='toggleSearch()' id='menu-button-search'>&#128269 Search</a></li>
     </ul>
+  </div>
+  <div id='search' style='display: none'>
+    <select id='searchCollections' placeholder='Search all collections'>
+      <option id=0>Search all collections</option>
+    </select>
   </div>
   <div id='content'>
   </div>

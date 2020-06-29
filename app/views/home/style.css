@@ -10,7 +10,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
-  padding: 0 2% 0 2%;
+  padding: 0 2% 2% 2%;
 }
 
 .header {
@@ -41,24 +41,29 @@ body {
 .menu {
   display: block;
   background-color: lightgrey;
-  padding: 0.1%;
   text-align: center;
+  padding: 10px;
 }
 
 .menu ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
 .menu li {
   display: inline;
-  padding-left: 1%;
-  padding-right: 1%;
 }
 
 .menu a {
-  font-size: 2em;
+  font-size: 1.3em;
   text-decoration: none;
+  color: #a418d0;
+  padding: 13px;
+}
+
+.menu a:hover {
+  background-color: #eeeeee;
 }
 
 #loading {
@@ -75,6 +80,17 @@ body {
 
 #loading p {
   padding-top: 40%;
+}
+
+#search {
+  background-color: lightgrey;
+  width: 100%;
+  padding: 1%;
+  text-align: center;
+}
+
+#searchCollections {
+  width: 40%;
 }
 
 .item {
@@ -105,7 +121,6 @@ body {
 .post-source-name {
   font-weight: bold;
   font-size: 0.7em;
-  background-color: yellow;
   border-radius: 10px;
   padding: 2px;
 }
