@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_015456) do
+ActiveRecord::Schema.define(version: 2020_06_29_184219) do
 
   create_table "collection_followers", force: :cascade do |t|
     t.integer "collection_id"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_015456) do
     t.string "title"
     t.string "author"
     t.integer "source_id"
-    t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "link"

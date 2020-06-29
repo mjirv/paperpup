@@ -9,6 +9,7 @@
     function changePage() {
       emptyContent();
       hideSearch();
+      hideNewCollection();
       beginLoading();
     }
     function emptyContent() {
@@ -54,11 +55,11 @@
         item = res[i];
         console.log(item);
         $("#content").append(`
-          <div class='item post' onclick="openExternal('${item['link']}')">
+          <div class='item post' onclick="openExternal('${item['link']}')" style='box-shadow: 0px 5px ${item['source_color']}'>
             <div class='post-name'>${item['title']}</div>
             <div class='post-author'>${item['author']}</div>
             <br />
-            <span class='post-source-name' style='color: ${item['source_color']}'>${item['source_title']}</span>
+            <span class='post-source-name'>${item['source_title']}</span>
             <span class='post-date'>${item['post_timestamp']}</span>
           </div>`
         );
@@ -86,7 +87,7 @@
     function showHome() {
       changePage();
       $.ajax({
-        url: "http://localhost:3000/collections",
+        url: "http://localhost:3000/collections?limit=10",
         context: document.body
       }).done(function(res) {
         emptyContent();
@@ -105,26 +106,30 @@
               <div class='description'>${item['description']}</div>
             </div>`);
         }
-        initializeSearch(res);
+        initializeSearch();
+        initializeSourceSearch();
       });
     }
 
-    function initializeSearch(res) {
-      console.log(res);
-      // Initialize select2
-      $("#searchCollections").select2({
-        placeholder: "Search all collections",
-        data: res.map(item => {
-          return {id: item.id, text: item.name, desc: item.description}
-        }),
-        width: '40%'
-        //minimumResultsForSearch: 10
+    function initializeSearch() {
+      $.ajax({
+        url: "http://localhost:3000/collections",
+        context: document.body
+      }).done(function(res) {
+        // Initialize select2
+        $("#searchCollections").select2({
+          placeholder: "Search all collections",
+          data: res.map(item => {
+            return {id: item.id, text: item.name}
+          }),
+          width: '40%'
+          //minimumResultsForSearch: 10
+        });
       });
 
       // Read selected option
       $('#searchCollections').on('select2:select', function(e){
         var id = $('#searchCollections').find(':selected').val();
-        console.log("search happened!");
         getCollection(id);
         hideSearch();
       });
@@ -135,6 +140,7 @@
     }
 
     function showSearch() {
+      hideNewCollection();
       $('#search').show();
       $('#menu-button-search').css({'text-shadow': '1px 1px #222222'});
     }
@@ -143,6 +149,61 @@
       $('#search').hide();
       $('#menu-button-search').css('text-shadow', '0px 0px');
       $('#searchCollections').val(null).trigger('change');
+    }
+
+    function toggleNewCollection() {
+      $('#new-collection').is(":visible") ? hideNewCollection() : showNewCollection();
+    }
+
+    function showNewCollection() {
+      hideSearch();
+      $('#new-collection').show();
+      $('#menu-button-new-collection').css({'text-shadow': '1px 1px #222222'});
+    }
+
+    function hideNewCollection() {
+      $('#new-collection').hide();
+      $('#menu-button-new-collection').css('text-shadow', '0px 0px');
+    }
+
+    function initializeSourceSearch() {
+      $.ajax({
+        url: "http://localhost:3000/sources",
+        context: document.body
+      }).done(function(res) {
+        // Initialize select2
+        $("#search-sources").select2({
+          data: res.map(item => {
+            return {id: item.id, text: item.title}
+          }),
+          width: '60%',
+          placeholder: 'Add Sources',
+          allowClear: true,
+          multiple: true
+          //minimumResultsForSearch: 10
+        });
+      });
+
+      $('#new-collection').submit(function(e) {
+        createNewCollection();
+      })
+    }
+
+    function createNewCollection() {
+      var colName = $('#new-collection-name').val();
+      var colDesc = $('#new-collection-desc').val();
+      var sourceIds = $('#search-sources').val();
+      changePage();
+      $.post("http://localhost:3000/collections",
+        {
+          collection: {
+            name: colName,
+            description: colDesc,
+            source_ids: sourceIds
+          }
+        }, function(res, status) {
+          getCollection(res['id']);
+      });
     }
 
     $(document).ready(function(){
@@ -163,14 +224,22 @@
   <div class="menu">
     <ul>
       <li><a href='#' id='menu-home' onclick='showHome()'>&#127968 Home</a></li>
-      <li><a href='#add'>&#10133 New Collection</a></li>
-      <li><a href='#search' onclick='toggleSearch()' id='menu-button-search'>&#128269 Search</a></li>
+      <li><a href='#' onclick='toggleNewCollection()' id='menu-button-new-collection'>&#10133 New Collection</a></li>
+      <li><a href='#' onclick='toggleSearch()' id='menu-button-search'>&#128269 Search</a></li>
     </ul>
   </div>
   <div id='search' style='display: none'>
     <select id='searchCollections'>
       <option value=0>Search all collections</option>
     </select>
+  </div>
+  <div id='new-collection' style='display: none'>
+    <form>
+      <input type='text' placeholder='Name' class='text-input' id='new-collection-name'><br />
+      <input type='text' placeholder='Description' class='text-input' id='new-collection-desc'><br />
+      <select placeholder='Add Sources' id='search-sources'><br />
+      <input type='submit' id='new-colleciton-submit'>
+    </form>
   </div>
   <div id='content'>
   </div>
