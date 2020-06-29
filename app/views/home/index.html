@@ -176,7 +176,7 @@
           data: res.map(item => {
             return {id: item.id, text: item.title}
           }),
-          width: '60%',
+          width: '100%',
           placeholder: 'Add Sources',
           allowClear: true,
           multiple: true
@@ -235,10 +235,10 @@
   </div>
   <div id='new-collection' style='display: none'>
     <form>
-      <input type='text' placeholder='Name' class='text-input' id='new-collection-name'><br />
-      <input type='text' placeholder='Description' class='text-input' id='new-collection-desc'><br />
-      <select placeholder='Add Sources' id='search-sources'><br />
-      <input type='submit' id='new-colleciton-submit'>
+      <input type='text' placeholder='Name' class='text-input' id='new-collection-name' required><br />
+      <input type='text' placeholder='Description' class='text-input' id='new-collection-desc' required><br />
+      <select placeholder='Add Sources' id='search-sources' required><br />
+      <input type='submit' id='new-colleciton-submit' class='button'>
     </form>
   </div>
   <div id='content'>
