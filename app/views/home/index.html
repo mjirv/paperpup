@@ -78,6 +78,12 @@
       }).done(function(res) {
         emptyContent();
         endLoading();
+        $("#content").append(`
+          <div class='section-header'>
+            <div class='name'>Welcome!</div>
+            <div class='description'>Get started with some of our most popular collections of articles!</div>
+          </div>
+          `)
         for (let i in res) {
           item = res[i];
           console.log(item);
