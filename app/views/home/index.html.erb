@@ -3,7 +3,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/mjirv/blog_aggregator/master/app/assets/stylesheets/style.css">
+  <%= stylesheet_link_tag    :all %>
   <script>
     // My custom methods
     function changePage() {
@@ -42,7 +42,7 @@
       beginLoading();
       console.log("called!");
       $.ajax({
-          url: `http://localhost:3000/posts?collection_id=${collectionId}&limit=10`,
+          url: `posts?collection_id=${collectionId}&limit=10`,
           context: document.body
         }).done(function(res) {
           endLoading();
@@ -75,7 +75,7 @@
         return;
       };
       $.ajax({
-        url: `http://localhost:3000/collections/${collectionId}`,
+        url: `collections/${collectionId}`,
         context: document.body
       }).done(function(res) {
         endLoading();
@@ -87,7 +87,7 @@
     function showHome() {
       changePage();
       $.ajax({
-        url: "http://localhost:3000/collections?limit=10",
+        url: "collections?limit=10",
         context: document.body
       }).done(function(res) {
         emptyContent();
@@ -113,7 +113,7 @@
 
     function initializeSearch() {
       $.ajax({
-        url: "http://localhost:3000/collections",
+        url: "collections",
         context: document.body
       }).done(function(res) {
         // Initialize select2
@@ -168,7 +168,7 @@
 
     function initializeSourceSearch() {
       $.ajax({
-        url: "http://localhost:3000/sources",
+        url: "sources",
         context: document.body
       }).done(function(res) {
         // Initialize select2
@@ -194,7 +194,7 @@
       var colDesc = $('#new-collection-desc').val();
       var sourceIds = $('#search-sources').val();
       changePage();
-      $.post("http://localhost:3000/collections",
+      $.post("collections",
         {
           collection: {
             name: colName,
