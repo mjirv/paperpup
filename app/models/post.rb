@@ -5,7 +5,7 @@ class Post < ApplicationRecord
     {
       id: self.id,
       title: self.title,
-      post_timestamp: self.post_timestamp.to_date rescue nil,
+      post_timestamp: self.post_timestamp ? self.post_timestamp.to_date : nil,
       author: self.author || '',
       source_title: self.source.title,
       link: self.link,
