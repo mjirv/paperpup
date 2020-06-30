@@ -145,6 +145,15 @@ body {
   cursor: pointer;
 }
 
+.refresh {
+  font-size: 2em;
+  float: right;
+}
+
+.refresh:hover {
+  cursor: pointer;
+}
+
 .item {
   padding: 2%;
   display: block;

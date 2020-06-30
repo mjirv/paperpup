@@ -33,15 +33,19 @@
       let collection = res['collection'];
       $("#content").append(`
         <div class='section-header'>
+          <div class='refresh' onclick='refreshCurrent(${collection['id']})'>&#128260</div>
           <div class='name'>${collection['name']}</div>
           <div class='description'>${collection['description']}</div>
         </div>`
       );
     }
 
+    function refreshCurrent(collectionId) {
+      getCollection(collectionId);
+    }
+
     function getPostsForCollection(collectionId) {
       beginLoading();
-      console.log("called!");
       $.ajax({
           url: `posts?collection_id=${collectionId}&limit=10`,
           context: document.body
@@ -54,7 +58,6 @@
     function showPosts(res) {
       for (let i in res) {
         item = res[i];
-        console.log(item);
         $("#content").append(`
           <div class='item post' onclick="openExternal('${item['link']}')" style='box-shadow: 0px 5px ${item['source_color']}'>
             <div class='post-name'>${item['title']}</div>
