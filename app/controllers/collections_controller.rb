@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   def index
-    @collections = Collection.all
+    @collections = Collection.order(:created_at).limit(params[:limit])
     render json: @collections
   end
 

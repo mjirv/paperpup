@@ -88,7 +88,7 @@
     function showHome() {
       changePage();
       $.ajax({
-        url: "collections?limit=10",
+        url: "collections?limit=6",
         context: document.body
       }).done(function(res) {
         emptyContent();
