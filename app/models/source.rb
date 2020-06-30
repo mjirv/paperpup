@@ -6,7 +6,7 @@ class Source < ApplicationRecord
   after_create do |new_source|
     source_url = new_source.source
     URI.open(source_url) do |rss|
-      feed = RSS::Parser.parse(rss)
+      feed = RSS::Parser.parse(rss, do_validate=false)
       generate_source(new_source, feed)
       generate_posts(new_source, feed)
     end
