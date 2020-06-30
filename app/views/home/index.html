@@ -233,7 +233,11 @@
       <option value=0>Search all collections</option>
     </select>
   </div>
-  <div id='new-collection' style='display: none'>
+  <div id='new-collection' style='display: none;'>
+    <div id='new-collection-exit' onclick='hideNewCollection()'>X</div>
+    <div class='name'>New Collection</div>
+    <div class='description'>A collection is a group of sources (news websites, blogs, etc.) you want to follow. Give it a try!</div>
+    <br/>
     <form>
       <input type='text' placeholder='Name' class='text-input' id='new-collection-name' required><br />
       <input type='text' placeholder='Description' class='text-input' id='new-collection-desc' required><br />
