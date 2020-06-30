@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :sources
 
-  root to: "collections#index"
+  root to: "home#index"
 end
