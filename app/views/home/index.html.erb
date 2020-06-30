@@ -185,8 +185,10 @@
         });
       });
 
-      $('#new-collection').submit(function(e) {
+      $('#new-collection-form').submit(function(e) {
         createNewCollection();
+        $('#search-sources').val(null).trigger('change');
+        $('#new-collection-form').trigger("reset");
       })
     }
 
@@ -239,11 +241,11 @@
     <div class='name'>New Collection</div>
     <div class='description'>A collection is a group of sources (news websites, blogs, etc.) you want to follow. Give it a try!</div>
     <br/>
-    <form>
+    <form id='new-collection-form'>
       <input type='text' placeholder='Name' class='text-input' id='new-collection-name' required><br />
       <input type='text' placeholder='Description' class='text-input' id='new-collection-desc' required><br />
       <select placeholder='Add Sources' id='search-sources' required><br />
-      <input type='submit' id='new-colleciton-submit' class='button'>
+      <input type='submit' id='new-collection-submit' class='button'>
     </form>
   </div>
   <div id='content'>

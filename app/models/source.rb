@@ -2,6 +2,7 @@ class Source < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :collection_sources, dependent: :destroy
   enum rss_type: [:rss, :atom]
+  validates_uniqueness_of :source
 
   after_create do |new_source|
     source_url = new_source.source
@@ -20,19 +21,19 @@ class Source < ApplicationRecord
     rss_type = new_source.rss_type
     case rss_type
     when 'atom'
-      new_source.title = feed.title.content
-      new_source.link = feed.link.href
+      new_source.title ||= feed.title.content
+      new_source.link ||= feed.link.href
     when 'rss'
-      new_source.title = feed.channel.title
-      new_source.link = feed.channel.link
+      new_source.title ||= feed.channel.title
+      new_source.link ||= feed.channel.link
     end
     new_source.save!
   end
 
-  def generate_posts(source, feed)
+  def generate_posts(source, feed, limit=100)
     source_id = source.id
     rss_type = source.rss_type
-    feed.items.reverse.each do |item|
+    feed.items[0..limit].each do |item|
       case rss_type
       when 'rss'
         link = item.link
@@ -42,8 +43,8 @@ class Source < ApplicationRecord
       when 'atom'
         link = item.link.href
         title = item.title.content
-        author = item.author.name.content
-        post_timestamp = item.published.content || item.updated_content
+        author = item.author.name.content rescue nil
+        post_timestamp = item.published.content rescue item.updated_content rescue nil
       end
       source_id = source.id
 

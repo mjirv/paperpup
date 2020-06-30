@@ -1,0 +1,70 @@
+http://xkcd.com/atom.xml,xkcd.com,"xkcd.com – The legendary comic about science, social commentary, and everything in between",
+http://feeds.feedburner.com/CssTricks,CSS-Tricks,CSS-Tricks – One of the authorities on all things web development related,
+http://feeds.feedburner.com/Explosm,Explosm.net,Explosm.net – Raunchy and controversial webcomic. They also have video series on YouTube,
+http://feeds.bbci.co.uk/news/rss.xml,BBC News – Home,BBC News – Home – One of the classic web news portals from the British public service broadcasters,red
+http://feeds.bbci.co.uk/news/world/rss.xml,BBC News – World,BBC News – World – Limit yourself to the World news section of BBC,red
+http://feeds.hanselman.com/ScottHanselman,Scott Hanselman’s Blog,Scott Hanselman’s Blog – Blogs about programming and news related to C# and .NET,
+http://rss.slashdot.org/Slashdot/slashdot,Slashdot,Slashdot – News for nerds. A website aggregating tech-related news. Come for the news stay for the comments,teal
+http://www.engadget.com/rss.xml,Engadget RSS Feed,"Engadget RSS Feed – Tech news publication, one of the best and well known. Great reviews of gadgets and industry news",orange
+http://rss.cnn.com/rss/cnn_topstories.rss,CNN.com – Top Stories,CNN.com – Top Stories – The top stories from CNN,red
+http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml,NYT > Home Page,NYT > Home Page – NYTimes is one of the most awarded newspaper publications around,black
+http://www.nytimes.com/services/xml/rss/nyt/Business.xml,NYT > Business Day,NYT > Business Day – Business News from The New York Times,black
+http://feeds.reuters.com/reuters/topNews,Reuters: Top News,Reuters: Top News – International news agency with breaking news – Their Top News feed,red
+http://feeds.reuters.com/Reuters/worldNews,Reuters: World News,Reuters: World News – Reuters World News feed,red
+http://feeds.reuters.com/reuters/technologyNews,Reuters: Technology News,Reuters: Technology News – Reuters Technology news feed,red
+http://feeds.reuters.com/reuters/businessNews,Reuters: Business News,Reuters: Business News – Reuters Business news feed,red
+http://feeds.mashable.com/Mashable,Mashable,"Mashable – Tech and media news blog about startups, technology and media",
+http://www.giantitp.com/comics/oots.rss,Order of the Stick,Order of the Stick – Great satire webcomic of role-playing games and medieval fantasy,
+http://www.theverge.com/rss/index.xml,The Verge,The Verge – Another contender for greatest tech news and gadget reviews. Run by the VOX Network,
+http://www.polygon.com/rss/index.xml,Polygon,Polygon – Great game related news from the VOX Network,
+http://www.vox.com/rss/index.xml,Vox,Vox – Contemperary news brought to you by the VOX network. Very insightful news,yellow
+http://feeds.arstechnica.com/arstechnica/index/,Ars Technica,Ars Technica – Decades old tech news and commentary,
+http://feeds.wired.com/wired/index,WIRED,WIRED – Latest news from the technologists favorite table-top magazine,black
+http://feeds.gawker.com/lifehacker/full,Lifehacker,"Lifehacker – Learn how to hack life, learn how to be a better human",green
+http://feeds.feedburner.com/Techcrunch,TechCrunch,TechCrunch – Legendary startup and media news. Covering all the best new startups around,green
+http://www.smbc-comics.com/rss.php,Saturday Morning Breakfast Cereal,"Saturday Morning Breakfast Cereal – One of the most famous webcomics out there. There’s no good description, just follow it people!",
+http://www.dumbingofage.com/feed/,Dumbing of Age ,Dumbing of Age – Webcomic set in a co-ed college dorm,
+http://www.lemonde.fr/rss/une.xml,Le Monde.fr,"Le Monde.fr – For a balanced news digest, follow one of France’s largest news publications",
+http://sethgodin.typepad.com/seths_blog/atom.xml,Seth Godin’s Blog,Seth Godin’s Blog – Blog about marketing and business from an absolute authority on the subject,
+http://feeds.macrumors.com/MacRumors-All,MacRumors,MacRumors – News about the world’s most famous company – Apple and all their related products,
+http://feeds.feedburner.com/TEDTalks_video,TEDTalks,TEDTalks – Grow your mind by listening to interesting TED talks,red
+http://www.npr.org/rss/rss.php?id=1001,News : NPR,News : NPR – American Public Service news,red
+http://feeds.feedburner.com/oatmealfeed,The Oatmeal,The Oatmeal – Amazing webcomic run by legend Matthew Inman.,
+http://feeds.gawker.com/gizmodo/full,Gizmodo,"Gizmodo – Tech and gadget news, controversial and expose-it-all pieces",black
+http://cucumber.gigidigi.com/feed/,Cucumber Quest,Cucumber Quest – Ongoing adventure webcomic. Follow bunny kids on adventures!,green
+http://feeds.howtogeek.com/HowToGeek,How-To Geek,How-To Geek – Technology explained. Follow this tech magazine to stay ahead of the tech curve in family gatherings,
+http://thepunchlineismachismo.com/feed,Manly Guys Doing Manly Things,"Manly Guys Doing Manly Things – Despite the name, features webcomic about video games and life",
+http://feeds2.feedburner.com/TheNextWeb,The Next Web,The Next Web – Opinion and fact about the digital world. Learn to navigate the bits and bytes better,
+http://feeds.feedburner.com/HighScalability,High Scalability,"High Scalability – For technologists primarily, follow the world of hosting websites without crashing all the time (and more advanced topics of course!)",
+http://feeds.nature.com/nature/rss/current,Nature,"Nature – Scientific journal, one of the worlds most cited scientific journals. So a must-follow for Nobel Prize Winners-to-be",black
+http://feeds.feedburner.com/codinghorror,Coding Horror,"Coding Horror – Famous Jeff Atwood’s blog, a renowned programmer, author and entrepreneur",
+https://news.ycombinator.com/rss,Hacker News,"Hacker News – News for people who call themselves hackers, but not in the destructive sense. Run by legendary tech accelerator YCombinator",orange
+http://oglaf.com/feeds/rss/,Oglaf! — Comics. Often dirty.,Oglaf! — Comics. Often dirty. – Sexually explicit webcomic covering fantasy elements and nude centaurs,
+http://www.awkwardzombie.com/awkward.php,Awkward Zombie,Awkward Zombie – Video game related webcomic. Hilarious!,
+http://feeds.feedburner.com/acs/jacsat,Journal of the American Chemical Society,Journal of the American Chemical Society – Latest ACS Publications. Science. Very science,
+http://feeds.feedburner.com/satwcomic,Scandinavia and the World,Scandinavia and the World – Wonderfully thoughtful webcomic about the ins-n-outs of the Scandinavian people,
+http://www.androidpolice.com/feed/,Android Police,Android Police – Authority on the latest Android news and reviews,
+http://feeds.searchengineland.com/searchengineland,Search Engine Land,Search Engine Land – Everything you need to know about search engines like Google and… Are there really any contenders? For SEO marketers and the like,
+http://feeds.gawker.com/kotaku/full,Kotaku,Kotaku – Gaming news brought to you by the same network as Gizmodo and Lifehacker,purple
+http://blog.humblebundle.com/rss,Humble Mumble,"Humble Mumble – Blog brought to you by the people behind the Humble Bundle, video game deals and video games with video games, more video games",
+http://contentmarketinginstitute.com/feed/,Content Marketing Institute,"Content Marketing Institute – Latest news on the world of Content Marketing. If you know what that is, you need to follow this feed!",
+http://krebsonsecurity.com/feed/,Krebs on Security,"Krebs on Security – Security blog by Brian Krebs, a famous journalist covering the world of digital security. Fascinating reads and findings",
+https://www.schneier.com/blog/atom.xml,Schneier on Security,Schneier on Security – Essays on privacy and security in the digital form. A must-follow for digital revolutionists,
+http://blog.hubspot.com/marketing/rss.xml,HubSpot Marketing Blog,"HubSpot Marketing Blog – Blog brought to you by HubSpot, the sales software",
+http://waitbutwhy.com/feed,Wait But Why,Wait But Why – Stick-figure-illustrated blog covering everything and even smaller things.,
+http://www.gunnerkrigg.com/rss.xml,Gunnerkrigg Court,Gunnerkrigg Court – Science-fantasy themed webcomic,
+http://www.paranatural.net/rss.php,Paranatural,Paranatural – Follow Max in this action/comedy webcomic,
+https://nakedsecurity.sophos.com/feed/,Naked Security,Naked Security – The leading edge in computer security news run by the anti-virus software Sophos,
+http://feedpress.me/mozblog,The Moz Blog,The Moz Blog – Authority in search engine optimization,
+http://feeds.feedburner.com/insideintercom,Inside Intercom,"Inside Intercom – Insightfully wonderful Intercom, a company known for it’s in-page chat product, helping business talk to their users",
+http://feeds.feedburner.com/seriouseatsfeaturesvideos,Serious Eats,"Serious Eats – Step up your cooking game, stop following your Nana’s old wive’s tales and start cooking the scientific way.",
+https://www.smashingmagazine.com/feed/,Smashing Magazine,Smashing Magazine – The latest in web development and web technologies. For designers and developers,
+https://www.entrepreneur.com/topic/marketing.rss,Entrepreneur: Latest Marketing Articles,Entrepreneur: Latest Marketing Articles – Want to start a business? Follow Entrepreneur.com’s latest marketing articles,
+https://m.signalvnoise.com/feed,Signal v. Noise – Medium,"Signal v. Noise – Medium – Blog run by the makers of Basecamp, legendary project management software and leader in intuitive business practices",
+https://www.reddit.com/r/technology/.rss,Reddit’s r/technology,Reddit’s r/technology – Reddit’s Technology sub-reddit.,red
+https://www.reddit.com/r/worldnews/top/.rss,Reddit’s r/worldnews,Reddit’s r/worldnews – The top scoring posts in the Worldnews sub-reddit,red
+https://www.reddit.com/r/Games/top/.rss,Reddit’s r/games,Reddit’s r/games – The top scoring posts in the Games sub-reddit,red
+https://www.reddit.com/r/AskCulinary/.rss,Reddit’s r/askculinary,Reddit’s r/askculinary – A place to become a better cook and share your culinary knowledge,red
+https://www.buzzfeed.com/tasty.xml,BuzzFeed – Tasty,BuzzFeed – Tasty – The latest ingeniously simple and mouth-watering recipies from Buzzfeed’s Tasty,yellow
+https://martinfowler.com/feed.atom,Martin Fowler,Martin Fowler – The latest musings by the programming guru Martin Fowler,
+http://feeds.feedburner.com/marginalrevolution/feed,MarginalREVOLUTION,,green
