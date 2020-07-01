@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
   has_many :collection_sources, dependent: :destroy
+  validates_uniqueness_of :name
 
   def get_sources()
     self.collection_sources.flat_map(&:source)

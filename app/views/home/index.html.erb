@@ -212,9 +212,52 @@
       });
     }
 
+    function showNewSource() {
+      hideSearch();
+      $('#new-source').show();
+    }
+
+    function hideNewSource() {
+      $('#new-source').hide();
+      $('#new-source-form').trigger("reset");
+    }
+
+    function createNewSource() {
+      var sourceName = $('#new-source-name').val();
+      var sourceSource = $('#new-source-source').val();
+      var sourceType = $('#new-source-rss-type').val();
+      var sourceColor = $('#new-source-color').val();
+
+      $.ajax({
+        type:    "POST",
+        url:     "sources",
+        data:    {
+          source: {
+            title: sourceName,
+            source: sourceSource,
+            rss_type: sourceType,
+            color: sourceColor
+          }
+        },
+        success: function(data) {
+              hideNewSource();
+              initializeSourceSearch();
+        },
+        error:   function(jqXHR, textStatus, errorThrown) {
+              alert("Error, " + errorThrown);
+        }
+      });
+
+    }
+
     $(document).ready(function(){
       // jQuery methods go here...
       showHome();
+
+      $('#new-source-form').submit(function(e) {
+        createNewSource();
+        $('#new-source-form').trigger("reset");
+      })
     });
   </script>
 </head>
@@ -239,8 +282,8 @@
       <option value=0>Search all collections</option>
     </select>
   </div>
-  <div id='new-collection' style='display: none;'>
-    <div id='new-collection-exit' onclick='hideNewCollection()'>X</div>
+  <div id='new-collection' class='new-modal' style='display: none;'>
+    <div id='new-collection-exit' class='new-modal-exit' onclick='hideNewCollection()'>X</div>
     <div class='name'>New Collection</div>
     <div class='description'>A collection is a group of sources (news websites, blogs, etc.) you want to follow. Give it a try!</div>
     <br/>
@@ -249,6 +292,25 @@
       <input type='text' placeholder='Description' class='text-input' id='new-collection-desc' required><br />
       <select placeholder='Add Sources' id='search-sources' required><br />
       <input type='submit' id='new-collection-submit' class='button'>
+    </form>
+    <p><a href='#' onclick='showNewSource()'>Don't see your favorite blog or website? Add it here.</a></p>
+  </div>
+
+  <!-- NEW SOURCE FORM -->
+  <div id='new-source' class='new-modal' style='display: none;'>
+    <div id='new-source-exit' class='new-modal-exit' onclick='hideNewSource()'>X</div>
+    <div class='name'>New Source</div>
+    <div class='description'>A source is an RSS feed you want to follow. Give it a try!</div>
+    <br/>
+    <form id='new-source-form' class='new-form'>
+      <input type='text' placeholder='Name' class='text-input' id='new-source-name'><br />
+      <input type='text' placeholder="RSS Feed URL" class='text-input' id='new-source-source' required><br />
+      <select id='new-source-rss-type' placeholder='RSS Type' required>
+        <option id='1' value='rss'>RSS</option>
+        <option id='2' value='atom'>Atom</option>
+      </select>
+      <input type='color' id='new-source-color' label='Display Color'></br>
+      <input type='submit' id='new-source-submit' class='button'>
     </form>
   </div>
   <div id='content'>
