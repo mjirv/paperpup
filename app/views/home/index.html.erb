@@ -62,14 +62,14 @@
 
     function getCollection(collectionId) {
       let startTime;
-      function getPostsForCollection(collectionId) {
+      function getPostsForCollection(collectionId, limit) {
         let startQuery = "";
         if (startTime) {
           startQuery = `&start_time=${startTime.valueOf()}`
         }
         beginLoading();
         $.ajax({
-            url: `posts?collection_id=${collectionId}&limit=10${startQuery}`,
+            url: `posts?collection_id=${collectionId}&limit=${limit}${startQuery}`,
             context: document.body
           }).done(function(res) {
             endLoading();
@@ -92,15 +92,15 @@
       }).done(function(res) {
         endLoading();
         showCollection(res);
-        getPostsForCollection(collectionId);
+        getPostsForCollection(collectionId, 20);
       });
 
       // Infinite scroll
       var shouldScroll = true;
       $(window).scroll(function () {
-         if (shouldScroll && $(window).scrollTop() >= $(document).height() - $(window).outerHeight() - 10) {
+         if (shouldScroll && $(window).scrollTop() >= $(document).height() - $(window).outerHeight() - 100) {
             shouldScroll = false;
-            shouldScroll = getPostsForCollection(collectionId);
+            shouldScroll = getPostsForCollection(collectionId, 5);
          }
       });
     }
