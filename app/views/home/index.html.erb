@@ -8,6 +8,7 @@
   <script>
     // My custom methods
     function changePage() {
+      $(window).off('scroll') // turn off infinite scroll when you change page
       emptyContent();
       hideSearch();
       hideNewCollection();
@@ -44,17 +45,6 @@
       getCollection(collectionId);
     }
 
-    function getPostsForCollection(collectionId) {
-      beginLoading();
-      $.ajax({
-          url: `posts?collection_id=${collectionId}&limit=10`,
-          context: document.body
-        }).done(function(res) {
-          endLoading();
-          showPosts(res);
-        });
-    }
-
     function showPosts(res) {
       for (let i in res) {
         item = res[i];
@@ -71,6 +61,18 @@
     }
 
     function getCollection(collectionId) {
+      function getPostsForCollection(collectionId) {
+        beginLoading();
+        $.ajax({
+            url: `posts?collection_id=${collectionId}&limit=10`,
+            context: document.body
+          }).done(function(res) {
+            endLoading();
+            showPosts(res);
+            shouldScroll = true;
+          });
+      }
+
       changePage();
       if(collectionId==0) {
         /* ideally I'd make the search bar placeholder text unclickable, but
@@ -85,6 +87,15 @@
         endLoading();
         showCollection(res);
         getPostsForCollection(collectionId);
+      });
+
+      // Infinite scroll
+      var shouldScroll = true;
+      $(window).scroll(function () {
+         if (shouldScroll && $(window).scrollTop() >= $(document).height() - $(window).outerHeight() - 10) {
+            shouldScroll = false;
+            shouldScroll = getPostsForCollection(collectionId);
+         }
       });
     }
 
