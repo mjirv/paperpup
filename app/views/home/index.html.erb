@@ -61,15 +61,21 @@
     }
 
     function getCollection(collectionId) {
+      let startTime;
       function getPostsForCollection(collectionId) {
+        let startQuery = "";
+        if (startTime) {
+          startQuery = `&start_time=${startTime.valueOf()}`
+        }
         beginLoading();
         $.ajax({
-            url: `posts?collection_id=${collectionId}&limit=10`,
+            url: `posts?collection_id=${collectionId}&limit=10${startQuery}`,
             context: document.body
           }).done(function(res) {
             endLoading();
             showPosts(res);
             shouldScroll = true;
+            startTime = Date.parse(res.pop().post_timestamp);
           });
       }
 

@@ -5,7 +5,7 @@ class Post < ApplicationRecord
     {
       id: self.id,
       title: self.title,
-      post_timestamp: self.post_timestamp.to_date,
+      post_timestamp: self.post_timestamp,
       author: self.author || '',
       source_title: self.source.title,
       link: self.link,
