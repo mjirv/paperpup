@@ -155,6 +155,16 @@ body {
   cursor: pointer;
 }
 
+#back {
+  font-size: 2em;
+  float: left;
+  padding-right: 2%;
+}
+
+#back:hover {
+  cursor: pointer;
+}
+
 .item {
   padding: 2%;
   display: block;

@@ -6,6 +6,9 @@
   <%= stylesheet_link_tag "style", media: "all", "data-turbolinks-track" => "reload" %>
 
   <script>
+    // For the back button
+    var toRecentPages = [];
+
     // My custom methods
     function changePage() {
       $(window).off('scroll') // turn off infinite scroll when you change page
@@ -78,6 +81,11 @@
             startTime = Date.parse(res.pop().post_timestamp);
           });
       }
+      if(typeof(collectionId) === 'undefined') {
+        // TODO: look into why the search function is doing a bunch of searches
+        // for undefined along with the real collectionId
+        return;
+      }
 
       changePage();
       if(collectionId==0) {
@@ -86,6 +94,16 @@
         showHome();
         return;
       };
+
+      // append back arrow
+      console.log(collectionId);
+      console.log(`getCollection(${collectionId})`);
+      toRecentPages.push(`getCollection(${collectionId})`);
+      $("#content").append(`
+      <div id='back' onclick='${toRecentPages.slice(-2, -1)}'>
+        &#128281
+      </div>`);
+
       $.ajax({
         url: `collections/${collectionId}`,
         context: document.body
@@ -107,6 +125,7 @@
 
     function showHome() {
       changePage();
+      toRecentPages.push('showHome()');
       $.ajax({
         url: "collections?limit=6",
         context: document.body
@@ -129,6 +148,7 @@
         }
         initializeSearch();
         initializeSourceSearch();
+        $('#back').remove();
       });
     }
 
@@ -225,6 +245,7 @@
             source_ids: sourceIds
           }
         }, function(res, status) {
+          //TODO: seems like this doesn't always work
           getCollection(res['id']);
       });
     }
