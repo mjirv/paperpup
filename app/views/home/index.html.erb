@@ -125,7 +125,10 @@
 
     function showHome() {
       changePage();
-      toRecentPages.push('showHome()');
+
+      // clear the back button history so it doesn't get huge
+      toRecentPages = ['showHome()'];
+
       $.ajax({
         url: "collections?limit=6",
         context: document.body
