@@ -44,15 +44,24 @@ class Source < ApplicationRecord
         link = item.link.href
         title = item.title.content
         author = item.author.name.content rescue nil
-        post_timestamp = item.published.content rescue item.updated_content rescue nil
+        post_timestamp = item.published.content rescue item.updated_content rescue DateTime.now
       end
       source_id = source.id
 
-      Post.find_or_create_by(link: link) do |post|
-        post.title = title
-        post.author = author
-        post.source_id = source.id
-        post.post_timestamp = post_timestamp
+      # ignore nil post_timestamps because we don't know if they're new
+      if not post_timestamp
+        return
+      end
+
+      # don't create extremely old posts since they'll probably never be seen
+      earliest_post = Post.minimum(:post_timestamp)
+      if earliest_post == nil or post_timestamp >= earliest_post
+        Post.find_or_create_by(link: link) do |post|
+          post.title = title
+          post.author = author
+          post.source_id = source.id
+          post.post_timestamp = post_timestamp
+        end
       end
     end
   end
