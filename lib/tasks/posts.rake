@@ -5,5 +5,6 @@ namespace :posts do
     if num_to_delete > 0
       Post.order(:post_timestamp).limit(num_to_delete).map(&:destroy)
     end
+    num_to_delete
   end
 end
